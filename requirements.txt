@@ -3,3 +3,8 @@ matplotlib
 numpy
 scikit-learn
 nltk
+datasets
+transformers
+evaluate
+torch
+torchvision
