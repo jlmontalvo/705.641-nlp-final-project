@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Classification System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">Text Classification System</h1>
+                <p class="app-subtitle">Human vs. AI-Generated Text Detection</p>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="input-panel">
+                <div class="panel-header">
+                    <h2>Input</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="text-input" class="form-label">Text to Analyze</label>
+                        <textarea 
+                            id="text-input" 
+                            class="form-textarea"
+                            placeholder="Enter text for classification analysis..."
+                            rows="10"
+                        ></textarea>
+                        <div class="form-meta">
+                            <span class="char-count">
+                                <span id="char-count">0</span> characters
+                            </span>
+                        </div>
+                    </div>
+                    <button id="analyze-btn" class="btn-submit" disabled>Analyze</button>
+                </div>
+            </section>
+
+            <div id="loading" class="status-panel hidden">
+                <div class="status-content">
+                    <div class="spinner"></div>
+                    <p>Processing...</p>
+                </div>
+            </div>
+
+            <section id="result" class="result-panel hidden">
+                <div class="panel-header">
+                    <h2>Classification Results</h2>
+                </div>
+                <div class="panel-body">
+                    <div id="result-content"></div>
+                </div>
+            </section>
+
+            <div id="error" class="error-panel hidden">
+                <div class="error-content">
+                    <strong>Error</strong>
+                    <p id="error-message"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
