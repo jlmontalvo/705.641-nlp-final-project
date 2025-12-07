@@ -21,17 +21,46 @@ This project implements a state-of-the-art system for distinguishing between hum
 
 ### Architecture
 
+**System Architecture Diagram:**
+
 ```
-Input Text
-    │
-    ├─→ BERT-base-uncased (Fine-tuned) → Semantic Embeddings (768-dim)
-    │
-    └─→ StyleDistance → Stylistic Embeddings (768-dim)
-            │
-            └─→ Concatenate → Integrated Embeddings (1536-dim)
-                    │
-                    └─→ 3-Layer MLP Classifier → Prediction
+┌─────────────────────────────────────────────────────────────────┐
+│                    Input Text                                    │
+└───────────────────────┬─────────────────────────────────────────┘
+                         │
+         ┌───────────────┴───────────────┐
+         │                               │
+         ▼                               ▼
+┌──────────────────┐          ┌──────────────────┐
+│  BERT-base-uncased│          │  StyleDistance   │
+│   (Fine-tuned)    │          │   (Pre-trained)  │
+└─────────┬─────────┘          └─────────┬────────┘
+          │                               │
+          │ Semantic Embeddings            │ Stylistic Embeddings
+          │ (768 dimensions)               │ (768 dimensions)
+          │                               │
+          └───────────────┬───────────────┘
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │   Concatenate         │
+              │   (1536 dimensions)   │
+              └───────────┬───────────┘
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │  3-Layer MLP           │
+              │  512 → 256 → 2         │
+              └───────────┬───────────┘
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │  Prediction           │
+              │  (Human / AI-Generated)│
+              └───────────────────────┘
 ```
+
+**Note:** For a detailed visual architecture diagram, see `docs/architecture.png` (to be created using ioLinks or similar diagramming software).
 
 ### Model Components
 
